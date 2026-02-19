@@ -1,0 +1,15 @@
+.app-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.main-content {
+    flex: 1;
+    padding-top: 100px;
+    /* Space for fixed nav */
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}

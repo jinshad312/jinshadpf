@@ -1,0 +1,66 @@
+:root {
+  --bg-color: #050a0e;
+  /* Deep dark blue-black for robotics feel */
+  --text-color: #e0f7fa;
+  /* Slight cyan tint for text */
+  --text-muted: #8899a6;
+  --accent-color: #00ff41;
+  /* Cyberpunk/Matrix Neon Green */
+  --secondary-accent: #00f3ff;
+  /* Cyan/Robotics Blue */
+  --primary-font: 'Inter', sans-serif;
+  --container-width: 1200px;
+  --nav-height: 80px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--primary-font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
