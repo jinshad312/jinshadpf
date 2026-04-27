@@ -1,16 +1,33 @@
 :root {
-  --bg-color: #050a0e;
-  /* Deep dark blue-black for robotics feel */
-  --text-color: #e0f7fa;
-  /* Slight cyan tint for text */
-  --text-muted: #8899a6;
-  --accent-color: #00ff41;
-  /* Cyberpunk/Matrix Neon Green */
-  --secondary-accent: #00f3ff;
-  /* Cyan/Robotics Blue */
-  --primary-font: 'Inter', sans-serif;
+  --bg-color: #050505; /* Deep, almost pure black */
+  --text-color: #f0f0f0; /* Crisp premium white */
+  --text-muted: #888888; /* Elegant neutral gray */
+  --accent-color: #ff5500; /* More intense, refined orange/red accent */
+  --secondary-accent: #ff8c42; /* Soft warm orange */
+  --primary-font: var(--font-inter), sans-serif;
+  --heading-font: var(--font-poppins), sans-serif;
+  --highlight-font: var(--font-inter), sans-serif;
   --container-width: 1200px;
   --nav-height: 80px;
+  --glass-bg: rgba(20, 20, 20, 0.4); /* Darker, stealthy translucent */
+  --glass-border: rgba(255, 255, 255, 0.05); /* Very subtle white border */
+  --glass-border-hover: rgba(255, 85, 0, 0.3);
+}
+
+/* Glassmorphism utility class */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+  border-radius: 24px; /* Slightly rounder */
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel:hover {
+  border-color: var(--glass-border-hover);
+  box-shadow: 0 15px 50px -10px rgba(255, 85, 0, 0.15), inset 0 1px 0 rgba(255,255,255,0.1);
 }
 
 * {
@@ -28,6 +45,8 @@ body {
 
 body {
   background-color: var(--bg-color);
+  background-image: radial-gradient(circle at top center, rgba(255, 85, 0, 0.08) 0%, rgba(5, 5, 5, 1) 60%);
+  background-attachment: fixed;
   color: var(--text-color);
   font-family: var(--primary-font);
   -webkit-font-smoothing: antialiased;

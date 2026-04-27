@@ -1,7 +1,12 @@
-import { Outlet } from 'react-router-dom';
+"use client";
+
 import PillNav from './PillNav';
-import Antigravity from './Antigravity';
 import Footer from './Footer';
+import { motion, AnimatePresence } from 'motion/react';
+import { usePathname } from 'next/navigation';
+
+// Use Next.js Image or raw path for the logo instead of Vite import
+const logoUrl = '/logo.svg';
 
 const navItems = [
     { label: 'Home', href: '/' },
@@ -11,30 +16,37 @@ const navItems = [
     { label: 'Contact', href: '/contact' },
 ];
 
-const Layout = () => {
+export default function ClientLayout({ children }) {
+    const pathname = usePathname();
+
     return (
         <div className="app-layout">
-            <Antigravity
-                count={200}
-                mouseEffect={true}
-                color="#00ff41" /* Neon Green */
-            />
             <PillNav
-                logo={null /* Use text fallback for now */}
+                logo={logoUrl}
+                logoAlt="MJ Logo"
                 items={navItems}
-                baseColor="#ffffff"
-                pillColor="rgba(255,255,255,0.1)"
-                pillTextColor="#ffffff"
-                hoveredPillTextColor="#000000"
+                cta={{ label: 'Book a Strategy Call', href: '/contact' }}
+                baseColor="#f7ede8"
+                pillColor="rgba(255, 122, 0, 0.15)"
+                pillTextColor="#f7ede8"
+                hoveredPillTextColor="#060300"
             />
 
             <main className="main-content">
-                <Outlet />
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={pathname}
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -15 }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
+                    >
+                        {children}
+                    </motion.div>
+                </AnimatePresence>
             </main>
 
             <Footer />
         </div>
     );
-};
-
-export default Layout;
+}

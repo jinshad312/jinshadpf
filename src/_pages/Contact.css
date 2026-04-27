@@ -4,21 +4,39 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+    .contact-wrapper {
+        padding-top: 100px;
+        padding-bottom: 60px;
+    }
 }
 
 .contact-content {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
+    display: flex;
+    flex-direction: column;
     gap: 80px;
     width: 100%;
-    max-width: var(--container-width);
     margin: 0 auto;
+    box-sizing: border-box;
+}
+
+@media (min-width: 901px) {
+    .contact-content {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        max-width: var(--container-width);
+    }
 }
 
 @media (max-width: 900px) {
     .contact-content {
         grid-template-columns: 1fr;
         gap: 40px;
+        padding: 0 15px;
     }
 }
 
@@ -58,6 +76,22 @@
     padding: 40px;
     border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .contact-right {
+        padding: 25px;
+        border-radius: 16px;
+    }
+}
+
+.contact-right:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 122, 0, 0.3);
 }
 
 .form-header {
@@ -93,7 +127,17 @@
     color: #fff;
     font-family: inherit;
     font-size: 1rem;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-group input:hover,
+.form-group textarea:hover,
+.form-group select:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .form-group input:focus,
@@ -118,11 +162,18 @@
     font-size: 1rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .submit-btn:hover {
     background: var(--accent-color);
     transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 122, 0, 0.2);
+}
+
+.submit-btn:active {
+    transform: scale(0.96) !important;
 }

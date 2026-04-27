@@ -1,5 +1,8 @@
+"use client";
+
 import { useEffect, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import { gsap } from 'gsap';
 import './PillNav.css';
 
@@ -7,14 +10,16 @@ const PillNav = ({
     logo,
     logoAlt = 'Logo',
     items,
+    cta, // Added cta prop
     className = '',
     ease = 'power3.easeOut',
     initialLoadAnimation = true
 }) => {
-    const location = useLocation();
-    const activeHref = location.pathname;
+    const pathname = usePathname();
+    const activeHref = pathname;
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
     const circleRefs = useRef([]);
     const tlRefs = useRef([]);
     const activeTweenRefs = useRef([]);
@@ -28,11 +33,16 @@ const PillNav = ({
     useEffect(() => {
         const layout = () => {
             circleRefs.current.forEach(circle => {
-                if (!circle?.parentElement) return;
+                if (!circle || !circle.parentElement) return;
 
                 const pill = circle.parentElement;
-                const rect = pill.getBoundingClientRect();
-                const { width: w, height: h } = rect;
+
+                // Use offsetWidth/Height to avoid transformed dimensions from scaleY
+                const w = pill.offsetWidth;
+                const h = pill.offsetHeight;
+
+                if (!w || !h) return; // Prevent NaN for hidden elements
+
                 const R = ((w * w) / 4 + h * h) / (2 * h);
                 const D = Math.ceil(2 * R) + 2;
                 const delta = Math.ceil(R - Math.sqrt(Math.max(0, R * R - (w * w) / 4))) + 1;
@@ -93,7 +103,20 @@ const PillNav = ({
             }
         }
 
-        return () => window.removeEventListener('resize', onResize);
+        // Scroll Listener for Scrolled State
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+        
+        return () => {
+             window.removeEventListener('resize', onResize);
+             window.removeEventListener('scroll', handleScroll);
+        };
     }, [items, ease, initialLoadAnimation]);
 
     const handleEnter = i => {
@@ -182,10 +205,10 @@ const PillNav = ({
 
     return (
         <div className="pill-nav-container">
-            <nav className={`pill-nav ${className}`} aria-label="Primary">
+            <nav className={`pill-nav ${className} ${isScrolled ? 'is-scrolled' : ''}`} aria-label="Primary">
                 <Link
                     className="pill-logo"
-                    to="/"
+                    href="/"
                     aria-label="Home"
                     onMouseEnter={handleLogoEnter}
                     ref={logoRef}
@@ -199,7 +222,7 @@ const PillNav = ({
                             <li key={item.href || `item-${i}`} role="none">
                                 <Link
                                     role="menuitem"
-                                    to={item.href}
+                                    href={item.href}
                                     className={`pill${activeHref === item.href ? ' is-active' : ''}`}
                                     onMouseEnter={() => handleEnter(i)}
                                     onMouseLeave={() => handleLeave(i)}
@@ -221,33 +244,55 @@ const PillNav = ({
                     </ul>
                 </div>
 
-                <button
-                    className="mobile-menu-button mobile-only"
-                    onClick={toggleMobileMenu}
-                    aria-label="Toggle menu"
-                    ref={hamburgerRef}
-                >
-                    <span className="hamburger-line" />
-                    <span className="hamburger-line" />
-                </button>
+                <div className="pill-nav-right" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    {cta && (
+                        <Link href={cta.href} className="btn btn-primary nav-cta desktop-only" style={{ padding: '0.6rem 1.2rem', fontSize: '0.9rem', whiteSpace: 'nowrap' }}>
+                            {cta.label}
+                        </Link>
+                    )}
+                    <button
+                        className="mobile-menu-button mobile-only"
+                        onClick={toggleMobileMenu}
+                        aria-label="Toggle menu"
+                        ref={hamburgerRef}
+                    >
+                        <span className="hamburger-line" />
+                        <span className="hamburger-line" />
+                    </button>
+                </div>
             </nav>
 
             <div className="mobile-menu-popover mobile-only" ref={mobileMenuRef}>
                 <ul className="mobile-menu-list">
-                    {items.map((item, i) => (
-                        <li key={item.href || `mobile-item-${i}`}>
-                            <Link
-                                to={item.href}
-                                className={`mobile-menu-link${activeHref === item.href ? ' is-active' : ''}`}
-                                onClick={() => {
-                                    setIsMobileMenuOpen(false);
-                                    toggleMobileMenu(); // Close visual state
-                                }}
-                            >
-                                {item.label}
-                            </Link>
-                        </li>
-                    ))}
+                    {items.map((item, i) => {
+                        const mIndex = i + items.length;
+                        return (
+                            <li key={item.href || `mobile-item-${i}`}>
+                                <Link
+                                    href={item.href}
+                                    className={`pill mobile-pill${activeHref === item.href ? ' is-active' : ''}`}
+                                    onMouseEnter={() => handleEnter(mIndex)}
+                                    onMouseLeave={() => handleLeave(mIndex)}
+                                    onClick={() => {
+                                        setIsMobileMenuOpen(false);
+                                        toggleMobileMenu(); // Close visual state
+                                    }}
+                                >
+                                    <span
+                                        className="hover-circle"
+                                        aria-hidden="true"
+                                        ref={el => { circleRefs.current[mIndex] = el; }}
+                                    />
+                                    <span className="label-stack">
+                                        <span className="pill-label">{item.label}</span>
+                                        <span className="pill-label-hover" aria-hidden="true">
+                                            {item.label}
+                                        </span>
+                                    </span>
+                                </Link>
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
         </div>

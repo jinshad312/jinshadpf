@@ -1,16 +1,32 @@
-# React + Vite
+# Jinshad Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a personal portfolio website built with Next.js, featuring smooth animations powered by GSAP and Three.js. 
 
-Currently, two official plugins are available:
+## Tech Stack
+-   **Framework:** Next.js (App Router)
+-   **Styling:** CSS
+-   **Animations:** GSAP, Framer Motion
+-   **3D Graphics:** Three.js
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
 
-## React Compiler
+First, run the development server:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-## Expanding the ESLint configuration
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Build for Production
+
+```bash
+npm run build
+```
+The site is configured to output a static export (`output: 'export'`). The exported HTML/CSS/JS files will be placed in the `/out` directory.

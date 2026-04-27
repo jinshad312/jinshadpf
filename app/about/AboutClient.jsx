@@ -1,7 +1,9 @@
+"use client";
+
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import './About.css';
+import '../../src/_pages/About.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,7 +15,7 @@ const About = () => {
             gsap.from('.about-hero > *', {
                 y: 30,
                 opacity: 0,
-                duration: 1,
+                duration: 0.8,
                 stagger: 0.1,
                 ease: 'power3.out'
             });
@@ -25,8 +27,8 @@ const About = () => {
                 },
                 y: 20,
                 opacity: 0,
-                stagger: 0.1,
-                duration: 0.8
+                stagger: 0.08,
+                duration: 0.6
             });
 
             gsap.from('.sidebar-block', {
@@ -36,8 +38,8 @@ const About = () => {
                 },
                 x: 20,
                 opacity: 0,
-                stagger: 0.1,
-                duration: 0.8
+                stagger: 0.08,
+                duration: 0.6
             });
 
         }, containerRef);
@@ -48,25 +50,25 @@ const About = () => {
     return (
         <div className="page-container about-container" ref={containerRef}>
 
-            <div className="about-hero">
+            <header className="about-hero">
                 <h1>Who I Am</h1>
                 <p className="about-hero-sub">Digital Strategist. Web Creator. Growth Architect.</p>
-            </div>
+            </header>
 
             <div className="section about-grid">
 
                 {/* Main Content */}
-                <div className="bio-section">
+                <article className="bio-section">
                     <h2>My Story</h2>
                     <div className="bio-text">
                         <p>
-                            I’m a digital marketer and web creator focused on building long-term growth systems for businesses through SEO, high-performance websites, and automation.
+                            I’m Muhammed Jinshad K, a freelance digital marketer and web designer based in Calicut, Kerala. My focus is on building long-term digital growth systems for businesses across India and globally through expert SEO services, Google Ads management, and high-performance website design.
                         </p>
                         <p>
-                            In a world where everyone is chasing the latest trend, I focus on what actually works: solid technical foundations, data-driven content strategies, and user experiences that convert.
+                            In a rapidly changing digital landscape, I strictly prioritize strategies that actually generate revenue: solid technical SEO foundations, data-driven social media marketing, and user experiences that convert local searchers into loyal customers.
                         </p>
                         <p>
-                            Started as a curious developer, I quickly realized that code without visibility is wasted potential. That's when I deep-dived into SEO and digital marketing, bridging the gap between "building" and "growing".
+                            Starting as a web developer in Calicut, I quickly realized that a beautiful website without search engine visibility is wasted potential. That realization led me to master SEO and digital marketing strategy—bridging the vital gap between merely "building" a website and actively "growing" a business online.
                         </p>
                     </div>
 
@@ -103,10 +105,10 @@ const About = () => {
                         </div>
                     </div>
 
-                </div>
+                </article>
 
                 {/* Sidebar */}
-                <div className="about-sidebar">
+                <aside className="about-sidebar">
                     <div className="sidebar-block">
                         {/* Profile Image Placeholder */}
                         <div style={{
@@ -127,11 +129,12 @@ const About = () => {
                     <div className="sidebar-block">
                         <h3>Core Expertise</h3>
                         <div className="skill-list">
-                            <span className="skill-tag">SEO Strategy</span>
-                            <span className="skill-tag">Technical SEO</span>
-                            <span className="skill-tag">WordPress Dev</span>
-                            <span className="skill-tag">React / Next.js</span>
-                            <span className="skill-tag">Marketing Automation</span>
+                            <span className="skill-tag">SEO Expert Calicut</span>
+                            <span className="skill-tag">Digital Marketing Strategy</span>
+                            <span className="skill-tag">Google Ads PPC</span>
+                            <span className="skill-tag">Technical SEO India</span>
+                            <span className="skill-tag">Web Design Calicut</span>
+                            <span className="skill-tag">Social Media Marketing</span>
                         </div>
                     </div>
 
@@ -159,7 +162,7 @@ const About = () => {
                             <li>Real Estate</li>
                         </ul>
                     </div>
-                </div>
+                </aside>
 
             </div>
 
