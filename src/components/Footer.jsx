@@ -37,7 +37,7 @@ const Footer = () => {
                         <h4>Contact</h4>
                         <ul>
                             <li><a href="mailto:jinshad312@gmail.com" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><FaEnvelope /> Email</a></li>
-                            <li><a href="https://wa.me/918129632798" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><FaWhatsapp /> WhatsApp</a></li>
+                            <li><a href="https://wa.me/919744632798" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><FaWhatsapp /> WhatsApp</a></li>
                         </ul>
                         <div className="social-icons" style={{ marginTop: '1rem' }}>
                             <a href="https://www.linkedin.com/in/muhammed-jinshadk?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" aria-label="Follow on LinkedIn"><FaLinkedin /></a>
