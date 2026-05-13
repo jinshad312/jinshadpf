@@ -1,32 +1,37 @@
-# Jinshad Portfolio
+# Toothsuite Premium Website
 
-This is a personal portfolio website built with Next.js, featuring smooth animations powered by GSAP and Three.js. 
+A complete premium luxury single-page website for Toothsuite Dental Clinic, Kerala, designed with Apple-level smoothness, modern startup-quality UI, and a premium dental lounge feeling.
 
-## Tech Stack
--   **Framework:** Next.js (App Router)
--   **Styling:** CSS
--   **Animations:** GSAP, Framer Motion
--   **3D Graphics:** Three.js
+## Architecture & Tech Stack
+
+*   **Framework:** Next.js (App Router), React, TypeScript
+*   **Styling:** Tailwind CSS, shadcn/ui, Radix UI
+*   **Animations:** Framer Motion, Lenis (Smooth Scrolling)
+*   **Deployment:** Vercel Optimized (Static Export / Serverless)
+
+## Directory Structure
+```
+src/
+├── app/          # Next.js App Router (Layout, Pages, Global CSS)
+├── components/
+│   ├── animations/ # Lenis SmoothScroll wrapper
+│   ├── layout/     # Navbar, Footer
+│   ├── sections/   # Page sections (Hero, About, Services, etc.)
+│   └── ui/         # Reusable shadcn/ui components (Buttons, etc.)
+├── constants/    # Global clinic info, services data
+└── lib/          # Utilities (Tailwind merge)
+```
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+`npm install`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Run the development server:
+`npm run dev`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 with your browser to see the result.
 
 ## Build for Production
 
-```bash
-npm run build
-```
-The site is configured to output a static export (`output: 'export'`). The exported HTML/CSS/JS files will be placed in the `/out` directory.
+`npm run build`
